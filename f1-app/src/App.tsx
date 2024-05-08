@@ -1,25 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as Slider from '@radix-ui/react-slider';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <form>
+        <Slider.Root className="SliderRoot" defaultValue={[50]} max={100} step={1}>
+          <Slider.Track className="SliderTrack">
+            <Slider.Range className="SliderRange" />
+          </Slider.Track>
+          <Slider.Thumb className="SliderThumb" aria-label="Volume" />
+        </Slider.Root>
+      </form>
   );
 }
 
