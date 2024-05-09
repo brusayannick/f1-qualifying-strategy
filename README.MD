@@ -1,0 +1,1 @@
+Link to page: https://brusayannick.github.io/f1-qualifying-strategy/
