@@ -1,11 +1,114 @@
-<mat-slider>
-  <input matSliderThumb>
-</mat-slider>
-<p>
-  <mat-form-field appearance="fill">
-    <mat-label>Fill form field</mat-label>
-    <input matInput placeholder="Placeholder">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-hint>Hint</mat-hint>
-  </mat-form-field>
-</p>
+<div class="container">
+  <div class="top-row-container">
+    <div class="top-group" style="justify-self: end;">
+      <!--Time specifications here-->
+      <div><p class="spec-headers">Time specifications</p></div>
+
+      <div><mat-form-field>
+        <mat-label>Push-Lap</mat-label>
+        <input
+          matInput
+          type="time"
+          [(ngModel)]="pushLapTime">
+      </mat-form-field></div>
+
+      <div><mat-form-field>
+        <mat-label>Cooldown-Lap</mat-label>
+        <input
+          matInput
+          type="time"
+          [(ngModel)]="cooldownTime">
+      </mat-form-field></div>
+
+      <div><mat-form-field>
+        <mat-label>Time in Pit</mat-label>
+        <input
+          matInput
+          type="time"
+          [(ngModel)]="pitLaneTime">
+      </mat-form-field></div>
+      <!--Time specifications here-->
+    </div>
+    <div class="top-group">
+      <!--Track specifications here-->
+
+      <div><p class="spec-headers">Track specifications</p></div>
+
+      <div><mat-form-field>
+        <mat-label>Track performance</mat-label>
+        <mat-select [(ngModel)]="trackPerformance">
+          <mat-option value="Top Speed">Top Speed</mat-option>
+          <mat-option value="Balanced">Balanced</mat-option>
+          <mat-option value="Downforce">Downforce</mat-option>
+        </mat-select>
+      </mat-form-field></div>
+
+      <div><mat-form-field>
+        <mat-label>Tyre wear</mat-label>
+        <mat-select [(ngModel)]="tyreWear">
+          <mat-option value="High">High</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="Low">Low</mat-option>
+        </mat-select>
+      </mat-form-field></div>
+
+      <div><mat-form-field floatLabel="always" style="width: 212px;">
+        <mat-label>Length</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="trackLength"
+          [pattern]="trackLengthPattern">
+        <span matTextPrefix style="margin-right: 4px">km</span>
+      </mat-form-field></div>
+
+      <!--Track specifications here-->
+    </div>
+    <div class="top-group" style="justify-self: start;">
+      <!--Format specifications here-->
+      <div><p class="spec-headers">Format specifications</p></div>
+
+      <div><mat-form-field>
+        <mat-label>Q1-Duration</mat-label>
+        <input
+          matInput
+          type="time"
+          placeholder="18:00"
+          [(ngModel)]="q1duration">
+      </mat-form-field></div>
+
+      <div><mat-form-field>
+        <mat-label>Q2-Duration</mat-label>
+        <input
+          matInput
+          type="time"
+          placeholder="15:00"
+          [(ngModel)]="q2duration">
+      </mat-form-field></div>
+
+      <div><mat-form-field>
+        <mat-label>Q3-Duration</mat-label>
+        <input
+          matInput
+          type="time"
+          placeholder="12:00"
+          [(ngModel)]="q3duration">
+      </mat-form-field></div>
+      <!--Format specifications here-->
+    </div>
+  </div>
+  <div class="middle-row-container">
+    <div><button
+      mat-flat-button
+      color="primary"
+      [disabled]="
+        this.trackLength.toString().match(this.trackLengthPattern)?.length != 1
+        || tyreWear == undefined
+        || trackPerformance == undefined"
+      (click)="calculate();">Calculate Strategies</button></div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="bottom-row-container">
+    <div><button mat-flat-button color="primary" (click)="getCooldownLapTime()">Calculate Strategies</button></div>
+  </div>
+</div>
